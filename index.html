@@ -3,122 +3,568 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Healing Harbor Health – Basic Home Care</title>
+    <title>Healing Harbor Health – Basic Home Care in Minnesota</title>
+
+    <!-- Simple styling -->
     <style>
+        :root {
+            --primary: #0b5d8f;
+            --primary-dark: #064066;
+            --accent: #15a3b8;
+            --bg: #f4f8fb;
+            --card-bg: #ffffff;
+            --text: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
             line-height: 1.6;
-            background: #f4f8fb;
-            color: #333;
+            background: var(--bg);
+            color: var(--text);
         }
 
-        header {
-            background: #0b5d8f;
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: white;
+            border-bottom: 1px solid #dde5ee;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .navbar .logo {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .navbar nav a {
+            margin-left: 18px;
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+        }
+
+        .navbar nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero section */
+        header.hero {
+            background: linear-gradient(135deg, #0b5d8f, #15a3b8);
             color: white;
-            padding: 40px 20px;
+            padding: 60px 20px 50px 20px;
             text-align: center;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
+        header.hero h1 {
+            margin: 0 0 15px 0;
+            font-size: 2.6rem;
         }
 
-        header p {
-            margin-top: 10px;
-            font-size: 1.2rem;
+        header.hero p {
+            margin: 0 auto 25px auto;
+            max-width: 600px;
+            font-size: 1.1rem;
         }
 
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 22px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-dark);
+            font-weight: bold;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #d9e3f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #f5f8ff;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Section layout */
         section {
-            padding: 40px 20px;
-            max-width: 900px;
+            padding: 50px 20px;
+            max-width: 1000px;
             margin: auto;
         }
 
         h2 {
-            color: #0b5d8f;
+            color: var(--primary);
+            margin-top: 0;
         }
 
-        .services-list li {
-            margin-bottom: 8px;
+        .two-column {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+            gap: 30px;
+            align-items: start;
         }
 
-        .about-box {
-            background: white;
+        .card {
+            background: var(--card-bg);
             padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
 
+        .pill {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: #e1eff9;
+            color: var(--primary-dark);
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+        }
+
+        /* Services grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .service-item h3 {
+            margin-top: 0;
+        }
+
+        .service-item ul {
+            padding-left: 20px;
+            margin: 8px 0 0;
+        }
+
+        /* Intake form */
+        form {
+            display: grid;
+            gap: 12px;
+        }
+
+        label {
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccd6e5;
+            font-size: 0.95rem;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        .form-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .note {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        #form-success {
+            display: none;
+            margin-top: 10px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: #e3f6e7;
+            color: #1b6b2b;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ */
+        details {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #dde5ee;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+
+        /* Footer */
         footer {
             background: #0b5d8f;
             color: white;
             text-align: center;
             padding: 20px;
             margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            header.hero h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Healing Harbor Health</h1>
-    <p>Compassionate Basic Home Care Services in Minnesota</p>
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Healing Harbor Health</div>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#intake">New Client Form</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+    <h1>Your Safe Harbor for Home Care</h1>
+    <p>
+        Healing Harbor Health provides compassionate Basic Home Care services to seniors and individuals with disabilities
+        across Minnesota—supporting safety, dignity, and independence at home.
+    </p>
+    <div class="hero-buttons">
+        <button class="btn btn-primary" onclick="document.getElementById('intake').scrollIntoView({behavior:'smooth'})">
+            Start New Client Intake
+        </button>
+        <button class="btn btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+            Explore Our Services
+        </button>
+    </div>
 </header>
 
-<section>
-    <div class="about-box">
-        <h2>About Us</h2>
-        <p>
-            Healing Harbor Health is a Minnesota Basic Home Care agency dedicated to supporting seniors and individuals with disabilities
-            in the comfort of their own homes. We believe every person deserves safety, dignity, and compassionate care.
-        </p>
+<!-- ABOUT -->
+<section id="about">
+    <div class="two-column">
+        <div class="card">
+            <span class="pill">About Us</span>
+            <h2>Who We Are</h2>
+            <p>
+                Healing Harbor Health is a Minnesota Basic Home Care agency dedicated to walking alongside seniors and people
+                living with disabilities. Our goal is simple: to make home a safe, calm, and supportive harbor.
+            </p>
+            <p>
+                Our founder is a disabled individual himself. That lived experience means we understand not only the practical
+                needs of daily care, but also the emotional realities—loss of independence, frustration, and the courage it takes
+                to ask for help. This perspective shapes everything we do.
+            </p>
+            <p>
+                We partner with families, case managers, and community organizations to build person-centered care plans that
+                respect each client’s preferences, routines, and cultural background.
+            </p>
+        </div>
 
-        <p>
-            Our founder is a disabled individual himself, which gives our agency a unique and personal understanding of the challenges,
-            strengths, and resilience of the disability community. This lived experience shapes our mission, values, and commitment
-            to exceptional, person-centered care.
-        </p>
+        <div class="card">
+            <span class="pill">At a Glance</span>
+            <ul>
+                <li>MDH Basic Home Care licensed (in process / planned)</li>
+                <li>Serving seniors and adults with disabilities</li>
+                <li>Flexible schedules: days, evenings, weekends</li>
+                <li>Private pay & waiver program–friendly</li>
+                <li>Caregivers trained in dignity, safety & respect</li>
+            </ul>
+            <canvas id="serviceChart" style="margin-top: 15px; max-height: 220px;"></canvas>
+            <p class="note">
+                Chart shows a sample mix of services our clients commonly use. It can be customized as your agency grows.
+            </p>
+        </div>
     </div>
 </section>
 
-<section>
-    <h2>Our Services</h2>
-    <ul class="services-list">
-        <li>✔ Assistance with Activities of Daily Living (ADLs)</li>
-        <li>✔ Bathing, grooming, and personal hygiene</li>
-        <li>✔ Help with mobility and transfers</li>
-        <li>✔ Meal planning and preparation</li>
-        <li>✔ Medication reminders</li>
-        <li>✔ Light housekeeping</li>
-        <li>✔ Companionship and supervision</li>
-        <li>✔ Safety monitoring and fall prevention</li>
-    </ul>
+<!-- SERVICES -->
+<section id="services">
+    <h2>Home Care Services We Provide</h2>
+    <p>
+        Healing Harbor Health focuses on non-medical Basic Home Care services allowed under Minnesota Department of Health
+        Basic Home Care licensing.
+    </p>
+
+    <div class="services-grid">
+        <div class="card service-item">
+            <h3>Personal Care & ADLs</h3>
+            <ul>
+                <li>Bathing, grooming, hygiene</li>
+                <li>Dressing and undressing</li>
+                <li>Toileting assistance</li>
+                <li>Mobility & safe transfers</li>
+            </ul>
+        </div>
+
+        <div class="card service-item">
+            <h3>Daily Living Support</h3>
+            <ul>
+                <li>Meal planning & preparation</li>
+                <li>Light housekeeping & laundry</li>
+                <li>Medication reminders</li>
+                <li>Errands and accompaniment</li>
+            </ul>
+        </div>
+
+        <div class="card service-item">
+            <h3>Companionship & Safety</h3>
+            <ul>
+                <li>Friendly visits & conversation</li>
+                <li>Safety checks & fall prevention</li>
+                <li>Routine & structure support</li>
+                <li>Caregiver respite for families</li>
+            </ul>
+        </div>
+
+        <div class="card service-item">
+            <h3>Person-Centered Planning</h3>
+            <ul>
+                <li>Individualized care plans</li>
+                <li>Coordination with case managers</li>
+                <li>Support for disability-related needs</li>
+                <li>Culturally respectful care</li>
+            </ul>
+        </div>
+    </div>
 </section>
 
-<section>
-    <h2>Why Choose Us?</h2>
-    <ul class="services-list">
-        <li>✔ Minnesota Department of Health (MDH) Basic Home Care Licensed</li>
-        <li>✔ Care delivered with dignity, respect, and cultural sensitivity</li>
-        <li>✔ Experience supporting seniors and individuals with disabilities</li>
-        <li>✔ Tailored care plans built around your needs and preferences</li>
-        <li>✔ Reliable, trained, and compassionate caregivers</li>
-    </ul>
+<!-- INTAKE FORM -->
+<section id="intake">
+    <div class="card">
+        <span class="pill">New Clients</span>
+        <h2>New Client Intake Form</h2>
+        <p>
+            Complete this short form and we will contact you to discuss your needs, answer questions, and schedule a free
+            consultation. <span class="note">(Demo only – this form currently does not send data to a server.)</span>
+        </p>
+
+        <form id="intake-form">
+            <div class="form-row-2">
+                <div>
+                    <label for="clientName">Client Name *</label>
+                    <input id="clientName" name="clientName" type="text" required>
+                </div>
+                <div>
+                    <label for="relationship">Your Relationship</label>
+                    <select id="relationship" name="relationship">
+                        <option value="">Select…</option>
+                        <option value="self">Self</option>
+                        <option value="spouse">Spouse/Partner</option>
+                        <option value="child">Adult Child</option>
+                        <option value="relative">Relative</option>
+                        <option value="case-manager">Case Manager</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row-2">
+                <div>
+                    <label for="phone">Phone *</label>
+                    <input id="phone" name="phone" type="tel" required>
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email">
+                </div>
+            </div>
+
+            <div>
+                <label for="address">Service Address (City, ZIP)</label>
+                <input id="address" name="address" type="text">
+            </div>
+
+            <div class="form-row-2">
+                <div>
+                    <label for="contactPref">Preferred Contact Method</label>
+                    <select id="contactPref" name="contactPref">
+                        <option value="">Select…</option>
+                        <option value="phone">Phone</option>
+                        <option value="email">Email</option>
+                        <option value="text">Text Message</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="payer">Payer Type</label>
+                    <select id="payer" name="payer">
+                        <option value="">Select…</option>
+                        <option value="private">Private Pay</option>
+                        <option value="waiver">Waiver Program</option>
+                        <option value="insurance">Insurance</option>
+                        <option value="unknown">Not Sure Yet</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label for="needs">What type of help is needed? *</label>
+                <textarea id="needs" name="needs" required placeholder="Example: help with bathing, meal prep 3x/week, medication reminders…"></textarea>
+            </div>
+
+            <div>
+                <label for="schedule">Preferred Schedule</label>
+                <textarea id="schedule" name="schedule" placeholder="Example: Mon–Fri mornings, 3 hours/day."></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Submit Intake Request</button>
+
+            <div id="form-success">
+                Thank you for reaching out to Healing Harbor Health. Your information has been received.
+                We will contact you as soon as possible.
+            </div>
+        </form>
+    </div>
 </section>
 
-<section>
-    <h2>Contact Us</h2>
-    <p><strong>Email:</strong> healingharborhealth@gmail.com</p>
-    <p><strong>Phone:</strong> (XXX) XXX-XXXX</p>
-    <p><strong>Location:</strong> Minnesota, USA</p>
-    <p>We look forward to serving you and your loved ones.</p>
+<!-- FAQ -->
+<section id="faq">
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+        <summary>What areas do you serve?</summary>
+        <p>
+            We primarily serve communities in Minnesota. Please contact us with your city and ZIP code so we can confirm
+            whether we currently serve your area.
+        </p>
+    </details>
+
+    <details>
+        <summary>Do you accept waiver programs or state-funded services?</summary>
+        <p>
+            We are waiver-friendly and happy to work with case managers and county agencies. We will walk you through
+            options and documentation needed.
+        </p>
+    </details>
+
+    <details>
+        <summary>Is Healing Harbor Health medically licensed?</summary>
+        <p>
+            We operate as a Minnesota Basic Home Care agency and focus on non-medical services such as ADL support,
+            supervision, safety, and companionship. We do not provide skilled nursing or medical procedures.
+        </p>
+    </details>
+
+    <details>
+        <summary>Can you help my family create a care plan?</summary>
+        <p>
+            Yes. We collaborate with you, the client, and any care team members to design a person-centered plan that
+            reflects your goals, routines, and preferences.
+        </p>
+    </details>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="two-column">
+        <div>
+            <h2>Contact Us</h2>
+            <p>
+                Ready to talk? Reach out by phone or email, or complete the intake form above and we will follow up.
+            </p>
+            <p><strong>Email:</strong> healingharborhealth@gmail.com</p>
+            <p><strong>Phone:</strong> (XXX) XXX-XXXX</p>
+            <p><strong>Location:</strong> Minnesota, USA</p>
+            <p class="note">
+                If you are a case manager or healthcare provider, we welcome referrals and collaboration to support shared clients.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>How the Process Works</h3>
+            <ol>
+                <li>Initial call or intake form submission</li>
+                <li>Free consultation & needs assessment</li>
+                <li>Care plan and schedule created with you</li>
+                <li>Caregivers matched and services begin</li>
+                <li>Ongoing check-ins and care plan updates</li>
+            </ol>
+        </div>
+    </div>
 </section>
 
 <footer>
-    <p>© 2025 Healing Harbor Health. All rights reserved.</p>
+    © 2025 Healing Harbor Health. All rights reserved.
 </footer>
+
+<!-- JavaScript: Chart.js + form handler -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Simple service mix chart (demo data)
+    const ctx = document.getElementById('serviceChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Personal Care', 'Daily Living Support', 'Companionship', 'Respite'],
+            datasets: [{
+                data: [35, 30, 20, 15],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            },
+            cutout: '60%'
+        }
+    });
+
+    // Client intake form handler – front-end only
+    const intakeForm = document.getElementById('intake-form');
+    const successBox = document.getElementById('form-success');
+
+    intakeForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // prevent page reload
+
+        // basic check: required fields handled by HTML5, but we can add more if needed
+        successBox.style.display = 'block';
+
+        // you can inspect the form data in the browser console if you like
+        const formData = new FormData(intakeForm);
+        console.log('Intake submission:', Object.fromEntries(formData.entries()));
+
+        intakeForm.reset();
+    });
+</script>
 
 </body>
 </html>
