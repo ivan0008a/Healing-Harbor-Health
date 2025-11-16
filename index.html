@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Healing Harbor Health – Basic Home Care in Minnesota</title>
 
-    <!-- Simple styling -->
     <style>
         :root {
             --primary: #0b5d8f;
@@ -58,7 +57,7 @@
             color: var(--accent);
         }
 
-        /* Hero section */
+        /* Hero */
         header.hero {
             background: linear-gradient(135deg, #0b5d8f, #15a3b8);
             color: white;
@@ -113,7 +112,7 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* Section layout */
+        /* Sections */
         section {
             padding: 50px 20px;
             max-width: 1000px;
@@ -149,6 +148,11 @@
             margin-bottom: 12px;
         }
 
+        .note {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
         /* Services grid */
         .services-grid {
             display: grid;
@@ -163,51 +167,6 @@
         .service-item ul {
             padding-left: 20px;
             margin: 8px 0 0;
-        }
-
-        /* Intake form */
-        form {
-            display: grid;
-            gap: 12px;
-        }
-
-        label {
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 8px;
-            border-radius: 6px;
-            border: 1px solid #ccd6e5;
-            font-size: 0.95rem;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 70px;
-        }
-
-        .form-row-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .note {
-            font-size: 0.85rem;
-            color: #666;
-        }
-
-        #form-success {
-            display: none;
-            margin-top: 10px;
-            padding: 10px 14px;
-            border-radius: 8px;
-            background: #e3f6e7;
-            color: #1b6b2b;
-            font-size: 0.9rem;
         }
 
         /* FAQ */
@@ -254,7 +213,7 @@
     <nav>
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#intake">New Client Form</a>
+        <a href="#intake">Client Intake</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
     </nav>
@@ -366,91 +325,34 @@
     </div>
 </section>
 
-<!-- INTAKE FORM -->
+<!-- GOOGLE FORM INTAKE -->
 <section id="intake">
     <div class="card">
         <span class="pill">New Clients</span>
-        <h2>New Client Intake Form</h2>
+        <h2>Client Intake Form</h2>
         <p>
-            Complete this short form and we will contact you to discuss your needs, answer questions, and schedule a free
-            consultation. <span class="note">(Demo only – this form currently does not send data to a server.)</span>
+            Please complete the secure form below. Your information goes directly to Healing Harbor Health via Google Forms.
+            We will contact you to discuss your needs and schedule a free consultation.
         </p>
 
-        <form id="intake-form">
-            <div class="form-row-2">
-                <div>
-                    <label for="clientName">Client Name *</label>
-                    <input id="clientName" name="clientName" type="text" required>
-                </div>
-                <div>
-                    <label for="relationship">Your Relationship</label>
-                    <select id="relationship" name="relationship">
-                        <option value="">Select…</option>
-                        <option value="self">Self</option>
-                        <option value="spouse">Spouse/Partner</option>
-                        <option value="child">Adult Child</option>
-                        <option value="relative">Relative</option>
-                        <option value="case-manager">Case Manager</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-            </div>
+        <!-- ================================
+             GOOGLE FORM IFRAME GOES HERE
+             Replace the placeholder below with the <iframe> code
+             you copied from Google Forms "Send → <> Embed"
+           ================================= -->
 
-            <div class="form-row-2">
-                <div>
-                    <label for="phone">Phone *</label>
-                    <input id="phone" name="phone" type="tel" required>
-                </div>
-                <div>
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="email">
-                </div>
-            </div>
+        <!-- Example structure: 
+        <iframe src="https://docs.google.com/forms/d/e/XXXXXXX/viewform?embedded=true"
+                width="100%" height="1450" frameborder="0" marginheight="0" marginwidth="0">
+            Loading…
+        </iframe>
+        -->
 
-            <div>
-                <label for="address">Service Address (City, ZIP)</label>
-                <input id="address" name="address" type="text">
-            </div>
+        <!-- PLACEHOLDER: replace this with your actual iframe -->
+        <p class="note">
+            (Google Form embed placeholder – after you create your form, paste its iframe here.)
+        </p>
 
-            <div class="form-row-2">
-                <div>
-                    <label for="contactPref">Preferred Contact Method</label>
-                    <select id="contactPref" name="contactPref">
-                        <option value="">Select…</option>
-                        <option value="phone">Phone</option>
-                        <option value="email">Email</option>
-                        <option value="text">Text Message</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="payer">Payer Type</label>
-                    <select id="payer" name="payer">
-                        <option value="">Select…</option>
-                        <option value="private">Private Pay</option>
-                        <option value="waiver">Waiver Program</option>
-                        <option value="insurance">Insurance</option>
-                        <option value="unknown">Not Sure Yet</option>
-                    </select>
-                </div>
-            </div>
-
-            <div>
-                <label for="needs">What type of help is needed? *</label>
-                <textarea id="needs" name="needs" required placeholder="Example: help with bathing, meal prep 3x/week, medication reminders…"></textarea>
-            </div>
-
-            <div>
-                <label for="schedule">Preferred Schedule</label>
-                <textarea id="schedule" name="schedule" placeholder="Example: Mon–Fri mornings, 3 hours/day."></textarea>
-            </div>
-
-            <button class="btn btn-primary" type="submit">Submit Intake Request</button>
-
-            <div id="form-success">
-                Thank you for reaching out to Healing Harbor Health. Your information has been received.
-                We will contact you as soon as possible.
-            </div>
-        </form>
     </div>
 </section>
 
@@ -524,7 +426,7 @@
     © 2025 Healing Harbor Health. All rights reserved.
 </footer>
 
-<!-- JavaScript: Chart.js + form handler -->
+<!-- JavaScript: Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // Simple service mix chart (demo data)
@@ -546,23 +448,6 @@
             },
             cutout: '60%'
         }
-    });
-
-    // Client intake form handler – front-end only
-    const intakeForm = document.getElementById('intake-form');
-    const successBox = document.getElementById('form-success');
-
-    intakeForm.addEventListener('submit', function (e) {
-        e.preventDefault(); // prevent page reload
-
-        // basic check: required fields handled by HTML5, but we can add more if needed
-        successBox.style.display = 'block';
-
-        // you can inspect the form data in the browser console if you like
-        const formData = new FormData(intakeForm);
-        console.log('Intake submission:', Object.fromEntries(formData.entries()));
-
-        intakeForm.reset();
     });
 </script>
 
